@@ -1,0 +1,79 @@
+<div>
+    <input type='text' placeholder="enter query" [(ngModel)]='query'>
+    <button (click)='runQuery()'>Submit</button>
+</div>
+<div>
+    <button (click)='fillSelect()'>SELECT</button>
+    <button (click)='fillInsert()'>INSERT</button>
+    <button (click)='fillDelete()'>DELETE</button>
+</div>
+<div>
+    <select [(ngModel)]='table' (ngModelChange)='fillIn("table")'>
+      <option value=''>Select a Table</option>
+      <option value='business'>Business</option>
+      <option value='checkins'>Checkins</option>
+      <option value='users'>Users</option>
+      <option value='reviews'>Reviews</option>
+    </select>
+    <select [(ngModel)]='attribute' (ngModelChange)='fillIn("attribute")' *ngIf='table==="business"'>
+        <option value=''>Slect an Attribute</option>
+        <option value='*'>*</option>
+        <option value='business_id'>business_id</option>
+        <option value='full_address'>full_address</option>
+        <option value='active'>active</option>
+        <option value='categories'>categories</option>
+        <option value='review_count'>review_count</option>
+        <option value='business_name'>business_name</option>
+        <option value='latitude'>latitude</option>
+        <option value='longitude'>longitude</option>
+        <option value='stars'>stars</option>
+    </select>
+
+    <select [(ngModel)]='attribute' (ngModelChange)='fillIn("attribute")' *ngIf='table==="checkins"'>
+        <option value=''>Slect an Attribute</option>
+        <option value='*'>*</option>
+        <option value='business_id'>business_id</option>
+        <option value='Sunday'>Sunday</option>
+        <option value='Monday'>Monday</option>
+        <option value='Tuesday'>Tuesday</option>
+        <option value='Wednesday'>Wednesday</option>
+        <option value='Thursday'>Thursday</option>
+        <option value='Friday'>Friday</option>
+        <option value='Saturday'>Saturday</option>
+      </select>
+
+      <select [(ngModel)]='attribute' (ngModelChange)='fillIn("attribute")' *ngIf='table==="users"'>
+        <option value=''>Slect an Attribute</option>
+        <option value='*'>*</option>
+        <option value='user_id'>user_id</option>
+        <option value='name'>name</option>
+        <option value='average_stars'>average_stars</option>
+        <option value='review_count'>review_count</option>
+      </select>
+
+        <select [(ngModel)]='attribute' (ngModelChange)='fillIn("attribute")' *ngIf='table==="reviews"'>
+        <option value=''>Slect an Attribute</option>
+        <option value='*'>*</option>
+        <option value='review_id'>review_id</option>
+        <option value='business_id'>business_id</option>
+        <option value='user_id'>user_id</option>
+        <option value='stars'>stars</option>
+        <option value='review_date'>review_date</option>
+        <option value='votes_funny'>votes_funny</option>
+        <option value='votes_useful'>votes_useful</option>
+        <option value='votes_cool'>votes_cool</option>
+        <option value='review_text'>review_text</option>
+      </select>
+      <select [(ngModel)]='orderBy' (ngModelChange)='addOrderBy()'>
+          <option value=''>Order By</option>
+        <option value=''>none</option>
+        <option value='asc'>ascending</option>
+        <option value='desc'>descending</option>
+      </select>
+    </div>
+
+<div *ngIf='results'>
+  <pre>
+    {{results|json}}
+  </pre>
+</div>

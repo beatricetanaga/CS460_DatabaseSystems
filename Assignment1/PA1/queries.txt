@@ -1,0 +1,10 @@
+Query1: select user_id from Users where review_count >= 1;
+Query2: select name from Users where review_count <= 2;
+Query3: select business_name from Business where active = 'FALSE';
+Query4: select business_name from Business where categories = 'Pizza Restaurants' and stars" >= 4.0;
+Query5: select B.business_name from Business B, Checkins C where C.business_id = B.business_ id and C.Friday >= 1;
+Query6: select R.review_text from Reviews R, Business B where R.business_id = B.business_id and B.business_name = 'Arcadia Tavern';
+Query7: select DISTINCT B.business_name from Business B, Reviews R where R.business_id = B.business_id and R.stars = 1 OR R.stars = 2;
+Query8: select R.rating, R.reviews from Reviews R, Business B where R.business_id = B.business_id and B.business_name = 'Kfc' and R.rating = (select AVG(R2.stars) from Reviews R2, Business B2 where R2.business_id = B2.business_id and B2.business_name = 'Kfc') and R.reviews = (COUNT(R3.review_id) from Reviews R3, Business B3 where R3.business_id = B3.business_id and B3.business_name = 'Kfc');
+Query9: select review_count from Business LIMIT 10 where review_count = (select MAX(review_count) from Business;
+Query10: select name from Users where review_count = (select MAX(review_count) from Users;
